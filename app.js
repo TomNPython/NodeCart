@@ -1,3 +1,4 @@
+var dotenv = require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -30,7 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
 app.use(session({
-  secret: 'shush', 
+  secret: process.env.SECRET_KEY, 
   resave: false, 
   saveUninitialized: false,
   store: new MongoStore({ mongooseConnection: mongoose.connection}),
